@@ -18,6 +18,16 @@ describe('ContactsService',function(){
         expect(ContactsService).toBeDefined();
     });
 
+    describe('getAllContact()',function(){
+        it('should be defined', function(){
+            expect(ContactsService.getAllContacts).toBeDefined();
+        });
+
+        it('should create new record', function(){
+            expect(ContactsService.getAllContacts()).toEqual(employees);
+        });
+    });
+
     describe('createContact(contact)',function(){
         beforeEach(function(){
             employee = {"firstName" : "Tom", "lastName":"Johnson", "phoneNumber" : "+446457474"};
@@ -43,5 +53,4 @@ describe('ContactsService',function(){
             expect(ContactsService.getAllContacts()).not.toContain(employee);
         });
     });
-
 });
