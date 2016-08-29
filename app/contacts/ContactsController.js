@@ -25,11 +25,9 @@
 
         vm.setEditable = function(id, contact) {
             vm.contactToEdit = angular.merge({},contact, {id : id});
-            console.log(vm.contactToEdit);
         }
 
         vm.editContact = function(id, contact){
-            console.log(contact);
             ContactsService.editContact(contact.id, contact);
             vm.contactToEdit = {};
         }
