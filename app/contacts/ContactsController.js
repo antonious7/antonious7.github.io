@@ -6,11 +6,19 @@
         .module('app')
         .controller('ContactsController', ContactsController);
     
-    ContactsController.$inject = [];
+    ContactsController.$inject = ['ContactsService'];
 
-    function ContactsController() {
+    function ContactsController(ContactsService) {
         var vm = this;
 
         vm.title = "Simple contacts list";
-    }
+        
+        vm.contact = {};
+        vm.contacts = ContactsService.getAllContacts();
+        
+        vm.createContact = function(contact) {
+            ContactsService.createContact(contact);
+            vm.contacts = ContactsService.getAllContacts();
+        }
+    };  
 })();

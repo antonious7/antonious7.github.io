@@ -1,1 +1,18 @@
-{{contacts.title}}
+<h1>{{contacts.title}}</h1>
+
+<form name="employee" ng-submit="contacts.createContact(contacts.contact)">
+    <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" class="form-control" id="firstName" ng-model="contacts.contact.firstName"/>
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" class="form-control" id="lastName" ng-model="contacts.contact.lastName"/>
+    </div>
+    <div class="form-group">
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" class="form-control" id="phoneNumber" ng-model="contacts.contact.phoneNumber"/>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
+{{contacts.contacts | json}}
