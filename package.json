@@ -1,7 +1,7 @@
 {
   "name": "contact-list",
   "private": true,
-  "version": "0.2.1",
+  "version": "1.0.0",
   "author": "Antoniy Zyumbyulev",
   "description": "A small contact list",
   "repository": "https://bitbucket.org/antonious7/contact-list",
