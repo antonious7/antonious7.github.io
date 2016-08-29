@@ -3,16 +3,18 @@
 <form name="employee" ng-submit="contacts.createContact(contacts.contact)">
     <div class="form-group">
         <label for="firstName">First Name:</label>
-        <input type="text" class="form-control" id="firstName" ng-model="contacts.contact.firstName"/>
+        <input type="text" class="form-control" id="firstName" 
+        ng-model="contacts.contact.firstName" required/>
     </div>
     <div class="form-group">
         <label for="lastName">Last Name:</label>
-        <input type="text" class="form-control" id="lastName" ng-model="contacts.contact.lastName"/>
+        <input type="text" class="form-control" id="lastName" 
+        ng-model="contacts.contact.lastName" required/>
     </div>
     <div class="form-group">
         <label for="phoneNumber">Phone Number:</label>
-        <input type="text" class="form-control" id="phoneNumber" ng-model="contacts.contact.phoneNumber"/>
+        <input type="text" class="form-control" id="phoneNumber" 
+        ng-model="contacts.contact.phoneNumber" required/>
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" class="btn btn-default" ng-disabled="employee.$invalid">Submit</button>
 </form>
-{{contacts.contacts | json}}

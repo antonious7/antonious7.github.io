@@ -28,13 +28,21 @@
 
     //-------- private methods ---------
         function _createContact(contact) {
-            if(contact) {
+            if(contact && _isContactValid(contact)) {
                 contacts.push(contact);
             }
         }
 
         function _getAllContacts() {
             return contacts;
+        }
+
+        function _isContactValid(contact){
+            if(contact.hasOwnProperty("firstName") 
+            && contact.hasOwnProperty("lastName") 
+            && contact.hasOwnProperty("phoneNumber")) {
+                return true;
+            }
         }
     }
 })();
