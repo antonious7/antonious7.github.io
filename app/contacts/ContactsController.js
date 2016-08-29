@@ -18,7 +18,7 @@
         
         vm.createContact = function(contact) {
             ContactsService.createContact(contact);
-            vm.contacts = ContactsService.getAllContacts();
+            vm.contact = {};
         }
     };  
 })();
