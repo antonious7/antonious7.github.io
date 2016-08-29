@@ -14,7 +14,7 @@
         vm.title = "Simple contacts list";
         
         vm.contact = {};
-        vm.contactToEdit = {};
+        vm.contactToEdit = undefined;
 
         vm.contacts = ContactsService.getAllContacts();
         
@@ -29,7 +29,11 @@
 
         vm.editContact = function(id, contact){
             ContactsService.editContact(contact.id, contact);
-            vm.contactToEdit = {};
+            vm.contactToEdit = undefined;
+        }
+
+        vm.deleteContact = function(contact) {
+            ContactsService.deleteContact(contact);
         }
     };  
 })();

@@ -89,4 +89,36 @@ describe('ContactsService',function(){
             expect(ContactsService.getAllContacts()).toContain(employeeToEdit);
         });
     });
+
+    describe('deleteContact(contact)', function(){
+        it('should be defined', function(){
+            expect(ContactsService.deleteContact).toBeDefined();
+        });
+
+        it('should not work when object is not contained', function(){
+            var arrayBeforeDeleting = ContactsService.getAllContacts(),
+            employeeToDelete = {
+                "firstName" : "Hello",
+                "lastName" : "World",
+                "phoneNumber" : "234534674574"
+            };
+
+            expect(arrayBeforeDeleting).not.toContain(employeeToDelete);
+
+            ContactsService.deleteContact(employeeToDelete);
+
+            expect(ContactsService.getAllContacts()).toEqual(arrayBeforeDeleting);
+        });
+
+        it('should work when object is presented', function(){
+            var arrayBeforeDeleting = ContactsService.getAllContacts(),
+            employeeToDelete = arrayBeforeDeleting[0];
+
+            expect(arrayBeforeDeleting).toContain(employeeToDelete);
+            
+            ContactsService.deleteContact(employeeToDelete);
+            
+            expect(ContactsService.getAllContacts()).not.toContain(employeeToDelete);
+        });
+    });
 });

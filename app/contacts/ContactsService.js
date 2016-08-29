@@ -22,7 +22,8 @@
         var service = {
             createContact: _createContact,
             getAllContacts: _getAllContacts,
-            editContact: _editContact
+            editContact: _editContact,
+            deleteContact: _deleteContact
         }
 
         return service;
@@ -58,5 +59,14 @@
             }
         }
 
+        function _deleteContact(contact) {
+            if(_isContactValid(contact)) {
+                for(var i in contacts) {
+                    if(angular.equals(contacts[i],contact)) {
+                        delete contacts[i];
+                    }
+                }
+            }
+        }
     }
 })();
