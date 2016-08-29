@@ -1,10 +1,10 @@
 {
   "name": "contact-list",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.2.1",
   "author": "Antoniy Zyumbyulev",
   "description": "A small contact list",
-  "repository": "https://github.com/angular/angular-seed",
+  "repository": "https://bitbucket.org/antonious7/contact-list",
   "license": "MIT",
   "devDependencies": {
     "bower": "^1.7.7",
