@@ -53,4 +53,40 @@ describe('ContactsService',function(){
             expect(ContactsService.getAllContacts()).not.toContain(employee);
         });
     });
+
+    describe('editContact(contact)',function(){
+        it('should be defined', function(){
+            expect(ContactsService.editContact).toBeDefined();
+        });
+
+        it('should not work without parameter', function(){
+            var arrayBeforeEditing = ContactsService.getAllContacts();
+
+            ContactsService.editContact();
+            expect(ContactsService.getAllContacts()).toEqual(arrayBeforeEditing);
+        });
+
+        it('should not work without second argument', function(){
+            var arrayBeforeEditing = employees,
+            index = 0;
+
+            ContactsService.editContact(index);
+            expect(ContactsService.getAllContacts()[index]).toEqual(arrayBeforeEditing[index]);
+        });
+
+        it('should edit existing object', function(){
+            var arrayBeforeEditing = ContactsService.getAllContacts(),
+            index = 0,
+            employeeToEdit = {
+                "firstName" : "Hello",
+                "lastName" : "World",
+                "phoneNumber" : "234534674574"
+            };
+            expect(ContactsService.getAllContacts()).not.toContain(employeeToEdit);
+
+            ContactsService.editContact(index, employeeToEdit);
+
+            expect(ContactsService.getAllContacts()).toContain(employeeToEdit);
+        });
+    });
 });

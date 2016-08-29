@@ -21,7 +21,8 @@
     //-------- public methods ---------
         var service = {
             createContact: _createContact,
-            getAllContacts: _getAllContacts
+            getAllContacts: _getAllContacts,
+            editContact: _editContact
         }
 
         return service;
@@ -44,5 +45,18 @@
                 return true;
             }
         }
+        function _isIdValid(index) {
+            if(!isNaN(parseInt(index,10)) && isFinite(index) 
+                && index >=0 && index < contacts.length) {
+                return true;
+            }
+        }
+
+        function _editContact(id, contact) {
+            if( _isIdValid(id) && contact && _isContactValid(contact)) {
+                contacts[id] = contact;
+            }
+        }
+
     }
 })();
