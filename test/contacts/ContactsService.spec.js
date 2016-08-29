@@ -54,7 +54,7 @@ describe('ContactsService',function(){
         });
     });
 
-    describe('editContact(contact)',function(){
+    describe('editContact(id, contact)',function(){
         it('should be defined', function(){
             expect(ContactsService.editContact).toBeDefined();
         });
