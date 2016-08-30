@@ -1,124 +1,123 @@
-describe('ContactsService',function(){
-    var ContactsService,
+describe('ContactsService', function () {
+  var ContactsService,
     employees = [
-            {"firstName" : "John", "lastName":"Smith", "phoneNumber" : "+444223432"},
-            {"firstName" : "Natasha", "lastName":"Collins", "phoneNumber" : "+434534432"},
-            {"firstName" : "Larry", "lastName":"Jones", "phoneNumber" : "+445648432"}
-            ],
-    employee;
+      {'firstName': 'John', 'lastName': 'Smith', 'phoneNumber': '+444223432'},
+      {'firstName': 'Natasha', 'lastName': 'Collins', 'phoneNumber': '+434534432'},
+      {'firstName': 'Larry', 'lastName': 'Jones', 'phoneNumber': '+445648432'}
+    ],
+    employee
 
-    beforeEach(module('app'));
+  beforeEach(module('app'))
 
-    beforeEach(inject(function($injector){
-        ContactsService = $injector.get('ContactsService');
+  beforeEach(inject(function ($injector) {
+    ContactsService = $injector.get('ContactsService')
+  }))
 
-    }));
+  it('should be defined', function () {
+    expect(ContactsService).toBeDefined()
+  })
 
-    it('should be defined', function(){
-        expect(ContactsService).toBeDefined();
-    });
+  describe('getAllContact()', function () {
+    it('should be defined', function () {
+      expect(ContactsService.getAllContacts).toBeDefined()
+    })
 
-    describe('getAllContact()',function(){
-        it('should be defined', function(){
-            expect(ContactsService.getAllContacts).toBeDefined();
-        });
+    it('should create new record', function () {
+      expect(ContactsService.getAllContacts()).toEqual(employees)
+    })
+  })
 
-        it('should create new record', function(){
-            expect(ContactsService.getAllContacts()).toEqual(employees);
-        });
-    });
+  describe('createContact(contact)', function () {
+    beforeEach(function () {
+      employee = {'firstName': 'Tom', 'lastName': 'Johnson', 'phoneNumber': '+446457474'}
+    })
 
-    describe('createContact(contact)',function(){
-        beforeEach(function(){
-            employee = {"firstName" : "Tom", "lastName":"Johnson", "phoneNumber" : "+446457474"};
-        });
+    it('should be defined', function () {
+      expect(ContactsService.createContact).toBeDefined()
+    })
 
-        it('should be defined', function(){
-            expect(ContactsService.createContact).toBeDefined();
-        });
+    it('should create new record', function () {
+      expect(ContactsService.getAllContacts()).toEqual(employees)
+      expect(ContactsService.getAllContacts()).not.toContain(employee)
 
-        it('should create new record', function(){
-            expect(ContactsService.getAllContacts()).toEqual(employees);
-            expect(ContactsService.getAllContacts()).not.toContain(employee);
-            
-            ContactsService.createContact(employee);
-            expect(ContactsService.getAllContacts()).toContain(employee);
-        });
+      ContactsService.createContact(employee)
+      expect(ContactsService.getAllContacts()).toContain(employee)
+    })
 
-        it('should not create new record whe no argument passed', function(){
-            expect(ContactsService.getAllContacts()).toEqual(employees);
-            expect(ContactsService.getAllContacts()).not.toContain(employee);
-            
-            ContactsService.createContact();
-            expect(ContactsService.getAllContacts()).not.toContain(employee);
-        });
-    });
+    it('should not create new record whe no argument passed', function () {
+      expect(ContactsService.getAllContacts()).toEqual(employees)
+      expect(ContactsService.getAllContacts()).not.toContain(employee)
 
-    describe('editContact(id, contact)',function(){
-        it('should be defined', function(){
-            expect(ContactsService.editContact).toBeDefined();
-        });
+      ContactsService.createContact()
+      expect(ContactsService.getAllContacts()).not.toContain(employee)
+    })
+  })
 
-        it('should not work without parameter', function(){
-            var arrayBeforeEditing = ContactsService.getAllContacts();
+  describe('editContact(id, contact)', function () {
+    it('should be defined', function () {
+      expect(ContactsService.editContact).toBeDefined()
+    })
 
-            ContactsService.editContact();
-            expect(ContactsService.getAllContacts()).toEqual(arrayBeforeEditing);
-        });
+    it('should not work without parameter', function () {
+      var arrayBeforeEditing = ContactsService.getAllContacts()
 
-        it('should not work without second argument', function(){
-            var arrayBeforeEditing = employees,
-            index = 0;
+      ContactsService.editContact()
+      expect(ContactsService.getAllContacts()).toEqual(arrayBeforeEditing)
+    })
 
-            ContactsService.editContact(index);
-            expect(ContactsService.getAllContacts()[index]).toEqual(arrayBeforeEditing[index]);
-        });
+    it('should not work without second argument', function () {
+      var arrayBeforeEditing = employees,
+        index = 0
 
-        it('should edit existing object', function(){
-            var arrayBeforeEditing = ContactsService.getAllContacts(),
-            index = 0,
-            employeeToEdit = {
-                "firstName" : "Hello",
-                "lastName" : "World",
-                "phoneNumber" : "234534674574"
-            };
-            expect(ContactsService.getAllContacts()).not.toContain(employeeToEdit);
+      ContactsService.editContact(index)
+      expect(ContactsService.getAllContacts()[index]).toEqual(arrayBeforeEditing[index])
+    })
 
-            ContactsService.editContact(index, employeeToEdit);
+    it('should edit existing object', function () {
+      var arrayBeforeEditing = ContactsService.getAllContacts(),
+        index = 0,
+        employeeToEdit = {
+          'firstName': 'Hello',
+          'lastName': 'World',
+          'phoneNumber': '234534674574'
+      }
+      expect(ContactsService.getAllContacts()).not.toContain(employeeToEdit)
 
-            expect(ContactsService.getAllContacts()).toContain(employeeToEdit);
-        });
-    });
+      ContactsService.editContact(index, employeeToEdit)
 
-    describe('deleteContact(contact)', function(){
-        it('should be defined', function(){
-            expect(ContactsService.deleteContact).toBeDefined();
-        });
+      expect(ContactsService.getAllContacts()).toContain(employeeToEdit)
+    })
+  })
 
-        it('should not work when object is not contained', function(){
-            var arrayBeforeDeleting = ContactsService.getAllContacts(),
-            employeeToDelete = {
-                "firstName" : "Hello",
-                "lastName" : "World",
-                "phoneNumber" : "234534674574"
-            };
+  describe('deleteContact(contact)', function () {
+    it('should be defined', function () {
+      expect(ContactsService.deleteContact).toBeDefined()
+    })
 
-            expect(arrayBeforeDeleting).not.toContain(employeeToDelete);
+    it('should not work when object is not contained', function () {
+      var arrayBeforeDeleting = ContactsService.getAllContacts(),
+        employeeToDelete = {
+          'firstName': 'Hello',
+          'lastName': 'World',
+          'phoneNumber': '234534674574'
+      }
 
-            ContactsService.deleteContact(employeeToDelete);
+      expect(arrayBeforeDeleting).not.toContain(employeeToDelete)
 
-            expect(ContactsService.getAllContacts()).toEqual(arrayBeforeDeleting);
-        });
+      ContactsService.deleteContact(employeeToDelete)
 
-        it('should work when object is presented', function(){
-            var arrayBeforeDeleting = ContactsService.getAllContacts(),
-            employeeToDelete = arrayBeforeDeleting[0];
+      expect(ContactsService.getAllContacts()).toEqual(arrayBeforeDeleting)
+    })
 
-            expect(arrayBeforeDeleting).toContain(employeeToDelete);
-            
-            ContactsService.deleteContact(employeeToDelete);
-            
-            expect(ContactsService.getAllContacts()).not.toContain(employeeToDelete);
-        });
-    });
-});
+    it('should work when object is presented', function () {
+      var arrayBeforeDeleting = ContactsService.getAllContacts(),
+        employeeToDelete = arrayBeforeDeleting[0]
+
+      expect(arrayBeforeDeleting).toContain(employeeToDelete)
+
+      ContactsService.deleteContact(employeeToDelete)
+
+      expect(ContactsService.getAllContacts()).not.toContain(employeeToDelete)
+    })
+  })
+})
