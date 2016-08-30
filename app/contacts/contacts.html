@@ -19,7 +19,7 @@
     <button type="submit" class="btn btn-default" ng-disabled="contactCreate.$invalid">Create</button>
 </form>
 
-<div class="panel panel-default">
+<div class="panel panel-default" ng-show="contacts.contacts.length">
     <div class="panel-heading">
         <div class="panel-title">Existing contacts:</div>
         <strong>(click to edit)</strong>
@@ -46,7 +46,7 @@
     </div>
 </div>
 
-<div ng-show="contacts.contactToEdit" class="row">
+<div ng-show="contacts.contactToEdit">
    <form name="contactEdit" ng-submit="contacts.editContact(contacts.contactToEdit.id, contacts.contactToEdit)">
     <div class="form-group">
         <label for="editFirstName">First Name:</label>
