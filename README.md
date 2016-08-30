@@ -23,6 +23,6 @@ After that start your local browser and navigate to http://localhost:8000
 
 ### TBD ###
 
-~~* Provide ability to filter them by first letter of firstname or last name~~
+* ~~Provide ability to filter them by first letter of firstname or last name~~
 * Provide ability to save all contacts to local storage
 * To make prettier UI
