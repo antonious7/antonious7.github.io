@@ -63,7 +63,7 @@
             if(_isContactValid(contact)) {
                 for(var i in contacts) {
                     if(angular.equals(contacts[i],contact)) {
-                        delete contacts[i];
+                        contacts.splice(i,1);
                     }
                 }
             }

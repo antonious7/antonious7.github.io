@@ -109,7 +109,7 @@ describe('ContactsService', function () {
       expect(ContactsService.getAllContacts()).toEqual(arrayBeforeDeleting)
     })
 
-    it('should work when object is presented', function () {
+    it('should not find the object in the array after deletion', function () {
       var arrayBeforeDeleting = ContactsService.getAllContacts(),
         employeeToDelete = arrayBeforeDeleting[0]
 
@@ -118,6 +118,15 @@ describe('ContactsService', function () {
       ContactsService.deleteContact(employeeToDelete)
 
       expect(ContactsService.getAllContacts()).not.toContain(employeeToDelete)
+    })
+
+    it('should change the collection length after deleting', function () {
+      var arrayBeforeDeleting = ContactsService.getAllContacts(),
+        employeeToDelete = arrayBeforeDeleting[0]
+
+      ContactsService.deleteContact(employeeToDelete)
+
+      expect(ContactsService.getAllContacts().length).toEqual(arrayBeforeDeleting.length);
     })
   })
 })
