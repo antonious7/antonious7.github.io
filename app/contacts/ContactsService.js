@@ -8,9 +8,9 @@
     .module('app')
     .factory('ContactsService', ContactsService)
 
-  ContactsService.$inject = []
+  ContactsService.$inject = ['ContactValidationService']
 
-  function ContactsService () {
+  function ContactsService (ContactValidationService) {
     // -------- private members --------
     var contacts = [
       {'id': 0,'firstName': 'John', 'lastName': 'Smith', 'phoneNumber': '+444223432'},
@@ -29,7 +29,7 @@
 
     // -------- private methods ---------
     function _createContact (contact) {
-      if (contact && _isContactValid(contact)) {
+      if (contact && ContactValidationService.isContactValid(contact)) {
         if (!angular.equals(contact, contacts[contact.id])) {
           contacts.push(contact)
         }
@@ -40,32 +40,15 @@
       return contacts
     }
 
-    function _isContactValid (contact) {
-      if (contact.hasOwnProperty('firstName')
-        && contact.hasOwnProperty('lastName')
-        && contact.hasOwnProperty('phoneNumber')) {
-        return true
-      }
-    }
-
-    function _isInContactList (contact) {
-    }
-
-    function _isIdValid (index) {
-      if (!isNaN(parseInt(index, 10)) && isFinite(index)
-        && index >= 0 && index < contacts.length) {
-        return true
-      }
-    }
-
     function _editContact (id, contact) {
-      if (_isIdValid(id) && contact && _isContactValid(contact)) {
+      if (ContactValidationService.isIdValid(id,contacts) 
+            && ContactValidationService.isContactValid(contact)) {
         contacts[id] = contact
       }
     }
 
     function _deleteContact (contact) {
-      if (_isContactValid(contact)) {
+      if (ContactValidationService.isContactValid(contact)) {
         for (var i in contacts) {
           if (angular.equals(contacts[i], contact)) {
             contacts.splice(i, 1)
