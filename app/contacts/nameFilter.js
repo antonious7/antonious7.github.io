@@ -6,9 +6,9 @@
         .module('app')
         .filter('filterName', filterName);
 
-    filterName.$inject = [];
+    filterName.$inject = [/*dependencies strings go here */];
 
-    function filterName() {
+    function filterName(/*dependencies go here*/) {
         return function(contacts,letter) {
             if(!contacts) {
                 return contacts;
