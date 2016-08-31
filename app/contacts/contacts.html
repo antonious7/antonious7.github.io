@@ -1,7 +1,7 @@
 <h1>{{contacts.title}}</h1>
 
 <div class="container col-sm-6">
-    <div class="row">
+    <div class="">
         <form name="contactCreate" ng-submit="contacts.createContact(contacts.contact)">
             <div class="form-group">
                 <label for="firstName">First Name:</label>
@@ -15,51 +15,33 @@
                 <label for="phoneNumber">Phone Number:</label>
                 <input type="text" class="form-control" id="phoneNumber" ng-model="contacts.contact.phoneNumber" required/>
             </div>
-            <button type="submit" class="btn btn-default" ng-disabled="contactCreate.$invalid">Create</button>
+            <button type="submit" class="btn btn-default btn-info" ng-disabled="contactCreate.$invalid">Create</button>
+            <button type="button" class="btn btn-default btn-warning" ng-disabled="contactCreate.$invalid" 
+            ng-click="contacts.editContact(contacts.contact.id, contacts.contact)">Edit</button>
         </form>
     </div>
 </div>
+<div class="col-xs-12" style="height:50px;"></div>
 <div class="clearfix"></div>
-
-<div class="panel panel-default" ng-show="contacts.contacts.length">
-    <div class="panel-heading">
-        <div class="panel-title">Existing contacts:</div>
-        <strong>(click to edit)</strong>
-    </div>
-
-    <div class="panel-body">
-        <ul class="list-group list-unstyled">
-            <li ng-repeat="contact in contacts.contacts" ng-if="$index % 2 == 0">
-                <div class="col-xs-12 col-sm-6" ng-show="contacts.contacts[$index]" ng-click="contacts.setEditable($index,contacts.contacts[$index])">
-                    <div class="list-group-item">
-                        <button class="btn btn-sm btn-danger" ng-click="contacts.deleteContact(contacts.contacts[$index])">Delete</button>                        {{contacts.contacts[$index].firstName}} {{contacts.contacts[$index].lastName}} <span class="badge">{{contacts.contacts[$index].phoneNumber}}</span>
+<div class="container">
+    <div class="panel panel-default" ng-show="contacts.contacts.length">
+        <div class="panel-heading">
+            <div class="panel-title">Existing contacts:</div>
+            <strong>(click to edit)</strong>
+            <input ng-model="filterStr" />
+        </div>
+        <div class="panel-body">
+            <ul class="list-group list-unstyled">
+                <li ng-repeat="contact in contactsList = (contacts.contacts | filterName:filterStr)">
+                    <div class="col-xs-12 col-sm-6" ng-show="contactsList[$index]" ng-click="contacts.setEditable($index,contactsList[$index])">
+                        <div class="list-group-item">
+                            <button class="btn btn-sm btn-danger" ng-click="contacts.deleteContact(contactsList[$index])">Delete</button>
+                            {{contact.firstName}} {{contact.lastName}}
+                            <span class="badge">{{contact.phoneNumber}}</span>
+                        </div>
                     </div>
-                </div>
-                <div class="col-xs-12 col-sm-6" ng-show="contacts.contacts[$index+1]" ng-click="contacts.setEditable($index,contacts.contacts[$index+1])">
-                    <div class="list-group-item" ng-if="contacts.contacts[$index + 1].firstName != null">
-                        <button class="btn btn-sm btn-danger" ng-click="contacts.deleteContact(contacts.contacts[$index+1])">Delete</button>                        {{contacts.contacts[$index +1].firstName}} {{contacts.contacts[$index+1].lastName}}<span class="badge">{{contacts.contacts[$index + 1].phoneNumber}}</span></div>
-                </div>
-            </li>
-        </ul>
-    </div>
-</div>
-<div class="clearfix"></div>
-<div class="container col-sm-6">
-    <div class="row" ng-show="contacts.contactToEdit">
-        <form name="contactEdit" ng-submit="contacts.editContact(contacts.contactToEdit.id, contacts.contactToEdit)">
-            <div class="form-group">
-                <label for="editFirstName">First Name:</label>
-                <input type="text" class="form-control" id="editFirstName" ng-model="contacts.contactToEdit.firstName" required/>
-            </div>
-            <div class="form-group">
-                <label for="editLastName">Last Name:</label>
-                <input type="text" class="form-control" id="editLastName" ng-model="contacts.contactToEdit.lastName" required/>
-            </div>
-            <div class="form-group">
-                <label for="editPhoneNumber">Phone Number:</label>
-                <input type="text" class="form-control" id="editPhoneNumber" ng-model="contacts.contactToEdit.phoneNumber" required/>
-            </div>
-            <button type="submit" class="btn btn-default" ng-disabled="contactEdit.$invalid">Edit</button>
-        </form>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
