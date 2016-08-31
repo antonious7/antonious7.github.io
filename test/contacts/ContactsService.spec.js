@@ -1,9 +1,9 @@
 describe('ContactsService', function () {
   var ContactsService,
     employees = [
-      {'firstName': 'John', 'lastName': 'Smith', 'phoneNumber': '+444223432'},
-      {'firstName': 'Natasha', 'lastName': 'Collins', 'phoneNumber': '+434534432'},
-      {'firstName': 'Larry', 'lastName': 'Jones', 'phoneNumber': '+445648432'}
+      {"id":0,"firstName" : "John", "lastName":"Smith", "phoneNumber" : "+444223432"},
+        {"id":1,"firstName" : "Natasha", "lastName":"Collins", "phoneNumber" : "+434534432"},
+        {"id":2,"firstName" : "Larry", "lastName":"Jones", "phoneNumber" : "+445648432"}
     ],
     employee
 
@@ -29,7 +29,7 @@ describe('ContactsService', function () {
 
   describe('createContact(contact)', function () {
     beforeEach(function () {
-      employee = {'firstName': 'Tom', 'lastName': 'Johnson', 'phoneNumber': '+446457474'}
+      employee = {"id":3,'firstName': 'Tom', 'lastName': 'Johnson', 'phoneNumber': '+446457474'}
     })
 
     it('should be defined', function () {
@@ -77,6 +77,7 @@ describe('ContactsService', function () {
       var arrayBeforeEditing = ContactsService.getAllContacts(),
         index = 0,
         employeeToEdit = {
+          'id': 0,
           'firstName': 'Hello',
           'lastName': 'World',
           'phoneNumber': '234534674574'
