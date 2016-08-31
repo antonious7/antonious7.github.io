@@ -11,7 +11,6 @@
     function filterName() {
         return function(contacts,letter) {
             if(!contacts) {
-                console.log(contacts);
                 return contacts;
             }
             else if(angular.isArray(contacts)) {
