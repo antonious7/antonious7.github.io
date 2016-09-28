@@ -15,7 +15,7 @@
 ```
 #!git
 
-git clone https://antonious7@bitbucket.org/antonious7/contact-list.git my-folder
+git clone https://github.com/antonious7/antonious7.github.io my-folder
 cd my-folder
 npm start
 ```
