@@ -30,28 +30,31 @@
         <div class="panel-heading">
             <div class="row">
                 <div class="col-sm-6">
+                    <button class="btn btn-success pull-right" ng-click="contacts.saveAllContacts()">
+                        <span class="glyphicon glyphicon-floppy-disk"></span>
+                        Save changes
+                    </button>
                     <div class="panel-title">Existing contacts <small>(click to edit)</small></div>
                 </div>
                 <div class="col-sm-6">
                     <form class="form-inline form-group">
                         <label for="filterStr">Filter by:</label>
                         <input id="filterStr" class="form-control" ng-model="filterStr" />
-                        <button class="btn btn-sm right" ng-click="contacts.saveAllContacts()">
-                            <span class="glyphicon glyphicon-floppy-disk"></span>
-                            Save changes
-                        </button>
                     </form>
                 </div>
             </div>
         </div>
         <div class="panel-body">
-            <ul class="list-group list-unstyled">
-                <li ng-repeat="contact in contactsList = (contacts.contacts | filterName:filterStr)">
-                    <div class="col-xs-12 col-sm-6" ng-show="contactsList[$index]" ng-click="contacts.setEditable($index,contactsList[$index])">
+            <ul class="list-group list-unstyled row">
+                <li class="col-xs-12 col-sm-6" ng-repeat="contact in contactsList = (contacts.contacts | filterName:filterStr)">
+                    <div ng-show="contactsList[$index]" ng-click="contacts.setEditable($index,contactsList[$index])">
                         <div class="list-group-item" ng-class="{'active': contacts.isSelected(contact) && !!contact}">
-                            <button class="btn btn-sm btn-danger" ng-click="contacts.deleteContact(contactsList[$index])">Delete</button>
-                            {{contact.firstName}} {{contact.lastName}}
-                            <span class="badge">{{contact.phoneNumber}}</span>
+
+                            <button class="btn btn-danger pull-right" ng-click="contacts.deleteContact(contactsList[$index])">Delete</button>
+                            <div>
+                                {{contact.firstName}} {{contact.lastName}}<br/>
+                                <span class="badge">{{contact.phoneNumber}}</span>
+                            </div>
                         </div>
                     </div>
                 </li>
