@@ -11,7 +11,7 @@
 
       $routeProvider
         .when('/', {
-          templateUrl:'/contacts/contacts.html',
+          templateUrl:'/app/contacts/contacts.html',
           controller: 'ContactsController',
           controllerAs: 'contacts'
         })
