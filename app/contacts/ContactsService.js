@@ -13,9 +13,9 @@
   function ContactsService (ContactValidationService) {
     // -------- private members --------
     var contacts = [
-      {'id': 0,'firstName': 'John', 'lastName': 'Smith', 'phoneNumber': '+444223432'},
-      {'id': 1,'firstName': 'Natasha', 'lastName': 'Collins', 'phoneNumber': '+434534432'},
-      {'id': 2,'firstName': 'Larry', 'lastName': 'Jones', 'phoneNumber': '+445648432'}
+      {'id': 0,'firstName': 'John', 'lastName': 'Smith', 'phoneNumber': '0442234323'},
+      {'id': 1,'firstName': 'Natasha', 'lastName': 'Collins', 'phoneNumber': '0434534432'},
+      {'id': 2,'firstName': 'Larry', 'lastName': 'Jones', 'phoneNumber': '0445648432'}
     ];
     // -------- public methods ---------
     return {
@@ -39,7 +39,7 @@
     }
 
     function _editContact (id, contact) {
-      if (ContactValidationService.isIdValid(id,contacts) 
+      if (ContactValidationService.isIdValid(id,contacts)
             && ContactValidationService.isContactValid(contact)) {
         contacts[id] = contact
       }
