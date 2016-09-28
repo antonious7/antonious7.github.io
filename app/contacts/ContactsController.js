@@ -20,18 +20,18 @@
         vm.createContact = function(contact) {
             ContactsService.createContact(contact);
             vm.contact = {};
-        }
+        };
 
         vm.setEditable = function(id, contact) {
             vm.contact = angular.merge({},contact, {id : id});
-        }
+        };
 
         vm.editContact = function(id, contact){
             ContactsService.editContact(contact.id, contact);
-        }
+        };
 
         vm.deleteContact = function(contact) {
             ContactsService.deleteContact(contact);
-        }
-    };  
+        };
+    }
 })();

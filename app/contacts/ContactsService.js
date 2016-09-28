@@ -1,14 +1,14 @@
 ;(function () {
-  'use strict'
+  'use strict';
 
   // services are the best place to keep business logic
   // in addition they could be used for sharing common data for different pages
 
   angular
     .module('app')
-    .factory('ContactsService', ContactsService)
+    .factory('ContactsService', ContactsService);
 
-  ContactsService.$inject = ['ContactValidationService']
+  ContactsService.$inject = ['ContactValidationService'];
 
   function ContactsService (ContactValidationService) {
     // -------- private members --------
@@ -16,16 +16,14 @@
       {'id': 0,'firstName': 'John', 'lastName': 'Smith', 'phoneNumber': '+444223432'},
       {'id': 1,'firstName': 'Natasha', 'lastName': 'Collins', 'phoneNumber': '+434534432'},
       {'id': 2,'firstName': 'Larry', 'lastName': 'Jones', 'phoneNumber': '+445648432'}
-    ]
+    ];
     // -------- public methods ---------
-    var service = {
+    return {
       createContact: _createContact,
       getAllContacts: _getAllContacts,
       editContact: _editContact,
       deleteContact: _deleteContact
-    }
-
-    return service
+    };
 
     // -------- private methods ---------
     function _createContact (contact) {
@@ -49,12 +47,12 @@
 
     function _deleteContact (contact) {
       if (ContactValidationService.isContactValid(contact)) {
-        for (var i in contacts) {
-          if (angular.equals(contacts[i], contact)) {
-            contacts.splice(i, 1)
+        for (var index in contacts) {
+          if (angular.equals(contacts[index], contact)) {
+            contacts.splice(index, 1)
           }
         }
       }
     }
   }
-})()
+})();

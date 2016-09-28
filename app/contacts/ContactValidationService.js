@@ -1,20 +1,18 @@
 ;(function () {
-  'use strict'
+  'use strict';
 
   angular
     .module('app')
-    .factory('ContactValidationService', ContactValidationService)
+    .factory('ContactValidationService', ContactValidationService);
 
-  ContactValidationService.$inject = []
+  ContactValidationService.$inject = [];
 
   function ContactValidationService () {
-    
-    var service = {
-        isContactValid: _isContactValid,
-        isIdValid: _isIdValid
-    }
 
-    return service
+    return {
+      isContactValid: _isContactValid,
+      isIdValid: _isIdValid
+    };
 
     function _isContactValid (contact) {
       if (contact && contact.hasOwnProperty('id')
@@ -32,4 +30,4 @@
       }
     }
   }
-})()
+})();
