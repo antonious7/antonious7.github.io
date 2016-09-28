@@ -6,7 +6,7 @@
 *	Show existing contacts in 2 columns
 *	Ability to edit a contact	
 *	Ability to delete a contact
-*   Provide ability to filter them by first letter of firstname or last name
+*   Provide ability to filter them by first name or last name
 *   Provide ability to save all contacts to local storage
 
 ### How do I get set up? ###

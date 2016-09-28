@@ -9,19 +9,16 @@
     filterName.$inject = [/*dependencies strings go here */];
 
     function filterName(/*dependencies go here*/) {
-        return function(contacts,letter) {
+        return function(contacts,search) {
             if(!contacts) {
                 return contacts;
             }
             else if(angular.isArray(contacts)) {
-                if(!letter) {
+                if(!search) {
                     return contacts;
                 } else {
-                    if(letter.length > 1) {
-                        letter = letter.substring(0,1);
-                    }
                     return contacts.filter(function(contact) {
-                        return contact.firstName.startsWith(letter,0) || contact.lastName.startsWith(letter,0) 
+                        return contact.firstName.indexOf(search) !== -1 || contact.lastName.indexOf(search) !== -1;
                     })
                 }
             }

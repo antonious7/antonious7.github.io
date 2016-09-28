@@ -38,8 +38,12 @@ describe('Filter duration tests', function () {
     expect(filter(employees, '')).toEqual(employees);
   });
 
-  it('should return one record for the string Love', function () {
-    expect(filter(employees, 'Love')).toEqual([employees[2]]);
+  it('should return empty array for the string Love', function () {
+    expect(filter(employees, 'Love')).toEqual([]);
+  });
+
+  it('should return exactly one record for the string Larry', function () {
+    expect(filter(employees, 'Larry')).toEqual([employees[2]]);
   });
 
   it('should return one record for L', function () {
