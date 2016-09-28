@@ -1,4 +1,6 @@
-<h1>{{contacts.title}}</h1>
+<div class="page-header">
+    <h1>{{contacts.title}}</h1>
+</div>
 
 <div class="container col-sm-6">
     <div class="">
@@ -34,6 +36,10 @@
                     <form class="form-inline form-group">
                         <label for="filterStr">Filter by:</label>
                         <input id="filterStr" class="form-control" ng-model="filterStr" />
+                        <button class="btn btn-sm right" ng-click="contacts.saveAllContacts()">
+                            <span class="glyphicon glyphicon-floppy-disk"></span>
+                            Save changes
+                        </button>
                     </form>
                 </div>
             </div>
@@ -42,7 +48,7 @@
             <ul class="list-group list-unstyled">
                 <li ng-repeat="contact in contactsList = (contacts.contacts | filterName:filterStr)">
                     <div class="col-xs-12 col-sm-6" ng-show="contactsList[$index]" ng-click="contacts.setEditable($index,contactsList[$index])">
-                        <div class="list-group-item">
+                        <div class="list-group-item" ng-class="{'active': contacts.isSelected(contact) && !!contact}">
                             <button class="btn btn-sm btn-danger" ng-click="contacts.deleteContact(contactsList[$index])">Delete</button>
                             {{contact.firstName}} {{contact.lastName}}
                             <span class="badge">{{contact.phoneNumber}}</span>

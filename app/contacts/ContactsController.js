@@ -16,7 +16,11 @@
         vm.contact = {};
 
         vm.contacts = ContactsService.getAllContacts();
-        
+
+        vm.isSelected = function(contact) {
+          return vm.contact.id === contact.id;
+        };
+
         vm.createContact = function(contact) {
             ContactsService.createContact(contact);
             vm.contact = {};
@@ -28,10 +32,15 @@
 
         vm.editContact = function(id, contact){
             ContactsService.editContact(contact.id, contact);
+            vm.contact = {};
         };
 
         vm.deleteContact = function(contact) {
             ContactsService.deleteContact(contact);
         };
+
+        vm.saveAllContacts = function() {
+            ContactsService.saveAllContacts();
+        }
     }
 })();
