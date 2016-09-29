@@ -7,8 +7,9 @@
     'ngRoute'
   ])
   
-  .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+  .config(['$routeProvider', '$locationProvider', '$compileProvider', function ($routeProvider, $locationProvider, $compileProvider) {
       $locationProvider.html5Mode(true);
+      $compileProvider.debugInfoEnabled(false);
       $routeProvider
         .when('/', {
           templateUrl:'/app/contacts/contacts.html',
