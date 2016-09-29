@@ -6,9 +6,9 @@
         .module('app')
         .controller('ContactsController', ContactsController);
     
-    ContactsController.$inject = ['ContactsService'];
+    ContactsController.$inject = ['ContactsService', 'toastr'];
 
-    function ContactsController(ContactsService) {
+    function ContactsController(ContactsService, toastr) {
         var vm = this;
 
         vm.title = "Simple contacts list";
@@ -40,7 +40,17 @@
         };
 
         vm.saveAllContacts = function() {
-            ContactsService.saveAllContacts();
+            ContactsService.saveAllContacts()
+            .then(function(){
+                toastr.success('The contact list has been saved!', 'Success', {
+                    closeButton: true
+                });
+            }).catch(function(){
+                toastr.error('Your browser doesn\'t support local storage', 'Operation won\'t complete', {
+                    closeButton: true
+                });
+            });
+
         }
     }
 })();
