@@ -7,7 +7,9 @@ module.exports = function(config) {
     files: [
       'bower_components/angular/angular.js',
       'bower_components/angular-route/angular-route.js',
+      'bower_components/angular-animate/angular-animate.js',
       'bower_components/angular-mocks/angular-mocks.js',
+      'bower_components/angular-toastr/dist/angular-toastr.tpls.js',
       'app/app.js',
       'app/contacts/**/*.js',
       'test/**/*.spec.js'
