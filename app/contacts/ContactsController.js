@@ -41,12 +41,12 @@
 
         vm.saveAllContacts = function() {
             ContactsService.saveAllContacts()
-            .then(function(){
-                toastr.success('The contact list has been saved!', 'Success', {
+            .then(function(response){
+                toastr.success(response.message, response.title, {
                     closeButton: true
                 });
-            }).catch(function(){
-                toastr.error('Your browser doesn\'t support local storage', 'Operation won\'t complete', {
+            }).catch(function(error){
+                toastr.error(error.message, error.title, {
                     closeButton: true
                 });
             });

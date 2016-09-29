@@ -38,13 +38,19 @@
         }
 
         function _saveAll(array) {
-            var q = $q.defer();
+            var q = $q.defer(),
+                response = {},
+                error = {};
 
             if(!$window.localStorage) {
-                q.reject();
+                error.message = 'Your browser doesn\'t support local storage';
+                error.title = 'Operation won\'t complete';
+                q.reject(error);
             } else {
+                response.message ='The contact list has been saved!';
+                response.title ='Operation completed successfully';
                 $window.localStorage.setItem(locStorageKey, angular.toJson(array));
-                q.resolve();
+                q.resolve(response);
             }
             return q.promise;
 
