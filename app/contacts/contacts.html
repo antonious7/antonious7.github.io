@@ -3,20 +3,23 @@
 </div>
 
 <div class="container col-sm-6">
-    <div class="">
-        <form name="contactCreate" ng-submit="contacts.createContact(contacts.contact)">
+    <div>
+        <form name="contactCreate" class="contact-create" ng-submit="contacts.createContact(contacts.contact)">
             <div class="form-group">
                 <label for="firstName">First Name:</label>
                 <input type="text" class="form-control" id="firstName" ng-model="contacts.contact.firstName" required/>
+                <span class="error-message">First name is required.</span>
             </div>
             <div class="form-group">
                 <label for="lastName">Last Name:</label>
                 <input type="text" class="form-control" id="lastName" ng-model="contacts.contact.lastName" required/>
+                <span class="error-message">Last name is required.</span>
             </div>
             <div class="form-group">
                 <label for="phoneNumber">Phone Number:</label>
                 <input type="text" class="form-control" id="phoneNumber" ng-pattern="/^\d{10}$/"
                        ng-model="contacts.contact.phoneNumber" required/>
+                <span class="error-message">Phone number is required and should be 10 symbols digits only.</span>
             </div>
             <button type="submit" class="btn btn-default btn-info" ng-disabled="contactCreate.$invalid">Create</button>
             <button type="button" class="btn btn-default btn-warning" ng-disabled="contactCreate.$invalid"
@@ -43,16 +46,17 @@
                 <div class="col-sm-6">
                     <form class="form-inline form-group">
                         <label for="filterStr">Filter by:</label>
-                        <input id="filterStr" class="form-control" ng-model="filterStr"/>
+                        <input id="filterStr" class="form-control" ng-model="contacts.filterStr"/>
                     </form>
                 </div>
             </div>
         </div>
         <div class="panel-body">
+
             <ul class="list-group list-unstyled row">
                 <li class="col-xs-12 col-sm-6"
-                    ng-repeat="contact in contactsList = (contacts.contacts | filterName:filterStr)">
-                    <div ng-show="contactsList[$index]" ng-click="contacts.setEditable($index,contactsList[$index])">
+                    ng-repeat="contact in contactsList = (contacts.contacts | filterName:contacts.filterStr)">
+                    <div ng-show="contactsList.length" ng-click="contacts.setEditable($index,contactsList[$index])">
                         <div class="list-group-item" ng-class="{'active': contacts.isSelected(contact) && !!contact}">
 
                             <button class="btn btn-danger pull-right"
@@ -65,6 +69,9 @@
                         </div>
                     </div>
                 </li>
+                <div class="alert-warning text-center" ng-show="!(contacts.contacts | filterName:contacts.filterStr).length">
+                    No Results found for: <strong>{{contacts.filterStr}}</strong>.
+                </div>
             </ul>
         </div>
     </div>

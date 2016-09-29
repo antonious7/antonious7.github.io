@@ -18,3 +18,17 @@ and (orientation: portrait) {
         margin: -7px -12px 0 0;
     }
 }
+.contact-create span.error-message {
+    display: none;
+}
+
+.contact-create input.ng-invalid.ng-touched{
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #a94442;
+}
+
+.contact-create input.ng-invalid.ng-touched ~ span.error-message{
+    color: #a94442;
+    display: inline;
+}
