@@ -51,7 +51,21 @@ describe('ContactsService', function () {
 
             ContactsService.createContact();
             expect(ContactsService.getAllContacts()).not.toContain(employee);
-        })
+        });
+
+        it('should create a new record which has the next available id', function(){
+            var listSize = employees.length,
+                employee = {"id": 0, 'firstName': 'Tom', 'lastName': 'Johnson', 'phoneNumber': '0446457474'},
+                initialId = employee.id;
+
+            expect(ContactsService.getAllContacts()).toEqual(employees);
+
+            ContactsService.createContact(employee);
+
+            expect(ContactsService.getAllContacts()[initialId]).not.toEqual(employee);
+            expect(ContactsService.getAllContacts()[listSize]).toEqual(employee);
+
+        });
     });
 
     describe('editContact(id, contact)', function () {

@@ -26,9 +26,9 @@
         // -------- private methods ---------
         function _createContact(contact) {
             if (contact && ContactValidationService.isContactValid(contact)) {
-                if (!angular.equals(contact, contacts[contact.id]) && !contacts[contact.id]) {
-                    contacts.push(contact)
-                }
+                contact.id = contacts.length;
+                contacts.push(contact)
+
             }
         }
 
@@ -37,7 +37,6 @@
         }
 
         function _saveAllContacts() {
-            console.log(contacts);
             ContactsLocalStorageService.saveAll(contacts);
         }
 
@@ -50,7 +49,7 @@
 
         function _deleteContact(contact) {
             if (ContactValidationService.isContactValid(contact)) {
-                for (var index in contacts) {
+                for (var index = 0, length = contacts.length; index < length; index++) {
                     if (angular.equals(contacts[index], contact)) {
                         contacts.splice(index, 1)
                     }
