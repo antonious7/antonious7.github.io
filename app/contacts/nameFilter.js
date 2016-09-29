@@ -18,7 +18,8 @@
                     return contacts;
                 } else {
                     return contacts.filter(function(contact) {
-                        return contact.firstName.indexOf(search) !== -1 || contact.lastName.indexOf(search) !== -1;
+                        return (contact.firstName.indexOf(search) !== -1 && search.length <= contact.firstName.length)
+                            || (contact.lastName.indexOf(search) !== -1 && search.length <= contact.lastName.length);
                     })
                 }
             }

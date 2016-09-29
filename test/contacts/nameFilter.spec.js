@@ -46,6 +46,10 @@ describe('Filter duration tests', function () {
     expect(filter(employees, 'Larry')).toEqual([employees[2]]);
   });
 
+  it('should return empty array for the string Larrys', function () {
+    expect(filter(employees, 'Larrys')).toEqual([]);
+  });
+
   it('should return one record for L', function () {
     expect(filter(employees, 'L')).toEqual([employees[2]]);
   });
