@@ -37,7 +37,7 @@
         }
 
         function _saveAllContacts() {
-            ContactsLocalStorageService.saveAll(contacts);
+            return ContactsLocalStorageService.saveAll(contacts);
         }
 
         function _editContact(id, contact) {

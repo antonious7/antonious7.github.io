@@ -9,9 +9,9 @@
 
     angular.module('app').factory('ContactsLocalStorageService', ContactsLocalStorageService);
 
-    ContactsLocalStorageService.$inject = ['$window'];
+    ContactsLocalStorageService.$inject = ['$window', '$q'];
 
-    function ContactsLocalStorageService($window) {
+    function ContactsLocalStorageService($window, $q) {
         var initialData = [
             {'id': 0,'firstName': 'John', 'lastName': 'Smith', 'phoneNumber': '0442234323'},
             {'id': 1,'firstName': 'Natasha', 'lastName': 'Collins', 'phoneNumber': '0434534432'},
@@ -38,7 +38,16 @@
         }
 
         function _saveAll(array) {
-            $window.localStorage.setItem(locStorageKey, angular.toJson(array));
+            var q = $q.defer();
+
+            if(!$window.localStorage) {
+                q.reject();
+            } else {
+                $window.localStorage.setItem(locStorageKey, angular.toJson(array));
+                q.resolve();
+            }
+            return q.promise;
+
         }
 
     }
