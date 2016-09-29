@@ -1,33 +1,34 @@
-;(function () {
-  'use strict';
+;
+(function () {
+    'use strict';
 
-  angular
-    .module('app')
-    .factory('ContactValidationService', ContactValidationService);
+    angular
+        .module('app')
+        .factory('ContactValidationService', ContactValidationService);
 
-  ContactValidationService.$inject = [];
+    ContactValidationService.$inject = [];
 
-  function ContactValidationService () {
+    function ContactValidationService() {
 
-    return {
-      isContactValid: _isContactValid,
-      isIdValid: _isIdValid
-    };
+        return {
+            isContactValid: _isContactValid,
+            isIdValid: _isIdValid
+        };
 
-    function _isContactValid (contact) {
-      if (contact && contact.hasOwnProperty('id')
-        && contact.hasOwnProperty('firstName')
-        && contact.hasOwnProperty('lastName')
-        && contact.hasOwnProperty('phoneNumber')) {
-        return true
-      }
+        function _isContactValid(contact) {
+            return contact && contact.hasOwnProperty('firstName')
+                && contact.hasOwnProperty('lastName')
+                && contact.hasOwnProperty('phoneNumber');
+        }
+
+        function _isIdValid(index, contacts) {
+            var id = parseInt(index, 10);
+            console.log(id);
+            console.log(contacts.length);
+            console.log(!isNaN(id) && isFinite(id));
+            console.log(id >= 0 && id <= contacts.length);
+
+            return (!isNaN(id) && isFinite(id) && (id >= 0 && id <= contacts.length));
+        }
     }
-
-    function _isIdValid (index,contacts) {
-      if (!isNaN(parseInt(index, 10)) && isFinite(index)
-        && index >= 0 && index < contacts.length) {
-        return true
-      }
-    }
-  }
 })();
