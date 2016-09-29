@@ -22,13 +22,13 @@ and (orientation: portrait) {
     display: none;
 }
 
-.contact-create input.ng-invalid.ng-touched{
+.contact-create input.ng-invalid.ng-dirty{
     color: #a94442;
     background-color: #f2dede;
     border-color: #a94442;
 }
 
-.contact-create input.ng-invalid.ng-touched ~ span.error-message{
+.contact-create input.ng-invalid.ng-dirty ~ span.error-message{
     color: #a94442;
     display: inline;
 }
