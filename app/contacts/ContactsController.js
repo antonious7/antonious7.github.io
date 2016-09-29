@@ -6,9 +6,9 @@
         .module('app')
         .controller('ContactsController', ContactsController);
     
-    ContactsController.$inject = ['ContactsService', 'toastr'];
+    ContactsController.$inject = ['ContactsService', 'toastr', '$scope'];
 
-    function ContactsController(ContactsService, toastr) {
+    function ContactsController(ContactsService, toastr, $scope) {
         var vm = this;
 
         vm.title = "Simple contacts list";
@@ -24,6 +24,7 @@
         vm.createContact = function(contact) {
             ContactsService.createContact(contact);
             vm.contact = {};
+            $scope.contactCreate.$setPristine();
         };
 
         vm.setEditable = function(id, contact) {
@@ -33,6 +34,7 @@
         vm.editContact = function(id, contact){
             ContactsService.editContact(contact.id, contact);
             vm.contact = {};
+            $scope.contactCreate.$setPristine();
         };
 
         vm.deleteContact = function(contact) {
