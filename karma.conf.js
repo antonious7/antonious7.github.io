@@ -12,7 +12,7 @@ module.exports = function(config) {
       'bower_components/angular-toastr/dist/angular-toastr.tpls.js',
       'app/app.js',
       'app/contacts/**/*.js',
-      'test/**/*.spec.js'
+      'test/unit-tests/**/*.spec.js'
     ],
 
     autoWatch: true,
